@@ -66,6 +66,7 @@ public class Q2LinkedList {
 	public static void main(String[] args)
 	{
 		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter no. of elements to be stored in linkedlist");
 		int ll=sc.nextInt();
 		//Constraint Handling
 				if(ll<1 || ll>Math.pow(10, 3)) {
@@ -74,7 +75,7 @@ public class Q2LinkedList {
 				}
 				
 		Q2LinkedList list = new Q2LinkedList();
-
+		System.out.println("Enter elements to be stored in linkedlist");
 			for(int i=0;i<ll;i++) {
 			list.insert(list, sc.nextInt());
 		}
