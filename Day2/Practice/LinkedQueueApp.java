@@ -1,5 +1,5 @@
 package Day2.Practice;
-//Linked list use case instead of array to store elements and perform operations in queue.
+//Linked list usage instead of array to store elements and perform operations in queue.
 class LinkedQueue {
 	// -------------------------------------------------------------
 	class Link {
