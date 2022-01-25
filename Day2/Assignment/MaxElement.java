@@ -10,8 +10,7 @@ public class MaxElement {
         
         int n = Integer.parseInt(sc.nextLine());
         int x = 0;  
-        
-   
+
         for(int i=0;i<n;i++){
         {
             String operations[] = sc.nextLine().split(" ");
@@ -34,8 +33,7 @@ public class MaxElement {
             
         }
         }
-        
-      
+
     }
 }
 

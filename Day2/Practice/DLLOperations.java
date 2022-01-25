@@ -10,7 +10,7 @@ class Node
     Node next, previous; 
 } 
   
-class DLLInsertion
+class DLLOperations
 { 
   
     static Node getNode(int data)  
@@ -68,8 +68,72 @@ class DLLInsertion
             } 
             return head; 
     } 
-  
-     
+    static Node delFirst(Node head){
+        if(head != null) {
+            Node temp = head;
+            head = head.next;
+            temp = null;
+            if(head != null) 
+              head.previous = null;
+          }
+          return head;
+    }
+    static Node delLast(Node head){
+        Node temp=head;
+        Node temp2;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+        }
+        temp2=temp.previous;
+        temp2.next=null;
+        temp=null;
+        return head;
+        
+    }
+
+    static Node delInter(Node head,int position){
+        Node temp=head;
+        Node temp2=null;
+        if(position==1){
+            head=delFirst(head);
+            return head;
+        }
+        while(position>1){
+            temp=temp.next;
+            position--;
+        }
+        if(temp.next==null){
+            head=delLast(head);
+        }
+        else{
+            temp2=temp.previous;
+            temp2.next=temp.next;
+            temp.next.previous=temp2;
+            temp=null;
+
+        }
+        return head;
+
+    }
+   
+     static Node reverse(Node head){
+         Node ptr1=head;
+         Node ptr2=ptr1.next;
+
+         ptr1.next=null;
+         ptr1.previous=ptr2;
+
+         while(ptr2!=null){
+             ptr2.previous=ptr2.next;
+             ptr2.next=ptr1;
+             ptr1=ptr2;
+             ptr2=ptr2.previous;
+         }
+         head=ptr1;
+         return head;
+
+     }
     static void printList(Node head) 
     { 
             while (head != null)  
@@ -106,6 +170,22 @@ class DLLInsertion
   
             System.out.println("Sorted Doubly Linked List"); 
             printList(head); 
+
+            System.out.println("\nAfter deletion of first node");
+            head=delFirst(head);
+            printList(head); 
+
+            System.out.println("\nAfter deletion of last node");
+            head=delLast(head);
+            printList(head); 
+
+            System.out.println("\nAfter deletion of intermediate node");
+            head=delInter(head,3);
+            printList(head); 
+
+            System.out.println("\nReverse DLL");
+            head=reverse(head);
+            printList(head);
     } 
 }
 // The time complexity of the above algorithm is f(n)=O(n).
