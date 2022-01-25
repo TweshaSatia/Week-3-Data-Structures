@@ -11,7 +11,7 @@ public class MaxElement {
         int n = Integer.parseInt(sc.nextLine());
         int x = 0;  
         
-        //while(sc.hasNext())
+   
         for(int i=0;i<n;i++){
         {
             String operations[] = sc.nextLine().split(" ");
@@ -35,9 +35,7 @@ public class MaxElement {
         }
         }
         
-       // while(n-- > 0)
-         //   System.out.println(maxs.peek());
-
+      
     }
 }
 
