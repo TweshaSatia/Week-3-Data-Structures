@@ -68,17 +68,17 @@ class DLLOperations
             } 
             return head; 
     } 
-    static Node delFirst(Node head){
+    static Node delFirst(Node head){   //deleting first node
         if(head != null) {
-            Node temp = head;
+            Node temp = head;        
             head = head.next;
-            temp = null;
+            temp = null;       //free temp
             if(head != null) 
               head.previous = null;
           }
           return head;
     }
-    static Node delLast(Node head){
+    static Node delLast(Node head){          //deleting last node
         Node temp=head;
         Node temp2;
         while(temp.next!=null)
@@ -87,15 +87,15 @@ class DLLOperations
         }
         temp2=temp.previous;
         temp2.next=null;
-        temp=null;
+        temp=null;        //free temp
         return head;
         
     }
 
-    static Node delInter(Node head,int position){
+    static Node delInter(Node head,int position){     //deleting intermediate node
         Node temp=head;
         Node temp2=null;
-        if(position==1){
+        if(position==1){                //deleting first node
             head=delFirst(head);
             return head;
         }
@@ -103,8 +103,8 @@ class DLLOperations
             temp=temp.next;
             position--;
         }
-        if(temp.next==null){
-            head=delLast(head);
+        if(temp.next==null){             //reached null
+            head=delLast(head);          //delete last node
         }
         else{
             temp2=temp.previous;
