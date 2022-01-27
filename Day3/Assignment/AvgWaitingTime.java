@@ -1,48 +1,44 @@
 package Day3.Assignment;
 
 import java.util.*;
-import java.io.*;
 
 public class AvgWaitingTime {
 
-    static void go() {
-        Scanner in =new Scanner(System.in);
-        int n = in.nextInt();   //total number of customers
-        Customer[] c = new Customer[n];
-        for(int i = 0; i < n; i++) {
-            c[i] = new Customer(in.nextInt(), in.nextInt()); //stores customer details, arg1= order time , arg2=cooking time
-        }
+    static int getMinimumAvg(Customer c[]) {
+      
+        //sorting array of customers according to their vist/order time.
         Arrays.sort(c);
-
-        PriorityQueue<Customer> q =
-                new PriorityQueue<Customer>(n, new Comparator<Customer>(){
-                    //Order by the difference between rdertime and CookTime ASC
+        PriorityQueue<Customer> q = new PriorityQueue<Customer>(c.length, new Comparator<Customer>(){
+                    //Order by the difference between ordertime and CookTime ASC
                     @Override public int compare(Customer c, Customer c1) {
                         return (int) (Math.abs(c.t - c.l) - Math.abs(c1.t - c1.l));
                     }
                 });
+
+        
         long time = c[0].t;
+        //adding customer into priority queue as per the comparison
         int idx = 0;
-        while(idx < n && c[idx].t <= time) {
+        while(idx < c.length && c[idx].t <= time) {
             q.add(c[idx]);
             idx++;
         }
 
-        long wait = 0;
+        int wait = 0;
         while(q.size() > 0) {
-            Customer next = q.poll();
-            time += next.l;
-            wait += time - next.t;
+            Customer currCustomer = q.poll();
+            time += currCustomer.l;
+            wait += time - currCustomer.t;
 
-            if (idx < n && q.size() == 0 && time < c[idx].t) {
+            if (idx < c.length && q.size() == 0 && time < c[idx].t) {
                 time = c[idx].t;
             }
-            while(idx < n && c[idx].t <= time) {
+            while(idx < c.length && c[idx].t <= time) {
                 q.add(c[idx]);
                 idx++;
             }
         }
-        System.out.println(wait / n);
+        return wait / c.length;
     }
 
     public static class Customer implements Comparable<Customer> {
@@ -56,7 +52,15 @@ public class AvgWaitingTime {
 
     }
     public static void main(String[] args) {
-        go();
+        Scanner in =new Scanner(System.in);
+        int n = in.nextInt();   //total number of customers
+        Customer[] c = new Customer[n];
+        for(int i = 0; i < n; i++) {
+            c[i] = new Customer(in.nextInt(), in.nextInt()); //stores customer details, arg1= order time , arg2=cooking time
+        }
+        int minimumAvg=getMinimumAvg(c);
+        System.out.println(minimumAvg);
+        in.close();
     }
 
  
